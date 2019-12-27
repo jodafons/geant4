@@ -3,10 +3,11 @@
 
 ## Requirements
 
-- root (https://gitlab.cern.ch/jodafons/root.git)
+- root
 - boost
 - numpy
 - cmake 3
+- qt4 (Optional: brew install cartr/qt4/pyqt@4 for macOS)
 
 
 ## Install the Root CERN package on your local machine (Required)
@@ -74,9 +75,19 @@ source $HOME/root/bin/thisroot.sh
 ```bash
 mkdir .bin
 cd .bin
-git clone https://github.com/jodafons/geant4_10.5.git
-cd geant4
-source buildthis.sh
-echo 'source ~/.bin/geant4/build/geant4.sh' >> ~/.bashrc
+git clone https://github.com/jodafons/geant4_10.5.git && cd geant4
+mkdir build && cd build
+cmake3 \
+    -DGEANT4_INSTALL_DATA=ON \
+    -DGEANT4_BUILD_MUONIC_ATOMS_IN_USE=ON \
+    -DGEANT4_USE_SYSTEM_ZLIB=ON \
+    -DGEANT4_USE_QT=ON \
+    -DGEANT4_USE_GDML=ON \
+    -DGEANT4_BUILD_MULTITHREADED=ON \
+    ..
+cp ../scripts/geant4_10.5.1.sh geant4.sh
 ```
+You must run geant4.sh to setup all envs to your workspace.
+
+
 

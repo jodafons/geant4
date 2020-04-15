@@ -8,7 +8,7 @@ geant4_envbindir=$(pwd)
 export PATH="$geant4_envbindir":${PATH}
 
 
-export LD_LIBRARY_PATH="`cd $geant4_envbindir/BuildProducts/lib64 > /dev/null ; pwd`":${LD_LIBRARY_PATH}
+export LD_LIBRARY_PATH="`cd $geant4_envbindir/BuildProducts/li* > /dev/null ; pwd`":${LD_LIBRARY_PATH}
 
 
 #-----------------------------------------------------------------------

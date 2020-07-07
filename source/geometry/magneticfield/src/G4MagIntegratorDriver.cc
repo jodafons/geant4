@@ -155,13 +155,9 @@ G4MagInt_Driver::AccurateAdvance(G4FieldTrack& y_current,
     {
       std::ostringstream message;
       message << "Proposed step is zero; hstep = " << hstep << " !";
-      //G4Exception("G4MagInt_Driver::AccurateAdvance()", 
-      //            "GeomField1001", JustWarning, message);
-      //return succeeded; 
-      message << " The event Must be Aborted!";
       G4Exception("G4MagInt_Driver::AccurateAdvance()", 
-                  "GeomField1001", EventMustBeAborted, message);
-      return false;
+                  "GeomField1001", JustWarning, message);
+      return succeeded; 
       
 
     }

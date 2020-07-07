@@ -94,9 +94,15 @@ AccurateAdvance(G4FieldTrack& track, G4double hstep,
     {
         std::ostringstream message;
         message << "Proposed step is zero; hstep = " << hstep << " !";
+        //G4Exception("G4IntegrationDriver::AccurateAdvance()", 
+        //            "GeomField1001", JustWarning, message);
         G4Exception("G4IntegrationDriver::AccurateAdvance()", 
-                    "GeomField1001", JustWarning, message);
-        return true; 
+                    "GeomField1001", EventMustBeAborted, message);
+        return false;
+
+        
+
+        //return true; 
     }
 
     if (hstep < 0)

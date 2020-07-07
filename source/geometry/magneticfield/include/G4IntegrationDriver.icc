@@ -93,11 +93,20 @@ AccurateAdvance(G4FieldTrack& track, G4double hstep,
     if (hstep == 0.0)
     {
         std::ostringstream message;
-        message << "Proposed step is zero; hstep = " << hstep << " !";
+        message << "Proposed step is zero; hstep = " << hstep << " !\n";
         //G4Exception("G4IntegrationDriver::AccurateAdvance()", 
         //            "GeomField1001", JustWarning, message);
-        G4Exception("G4IntegrationDriver::AccurateAdvance()", 
-                    "GeomField1001", EventMustBeAborted, message);
+        
+        message << "Action created by: Joao Victor da Fonseca Pinto (jodafons@lps.ufrj.br)\n"
+        message << "+----------------------------------- NON OFFICIAL ACTION  -----------------------------------------+\n";
+        message << "| This is a hack version created by jodafons. The original codo treat this condition as a warning. |\n";
+        message << "| Here we will treat the integration step zero as an error and will send an abort event signal to  |\n";
+        message << "| Geant control.                                                                                   |\n";
+        message << "| This action as hack becouse I am not be able to undestand why the step zero become zero in an    |\n";
+        message << "| Uniform field. As less than 1 percent of the event rise this condition. let's just ignore this   |\n";
+        message << "| and ignore the current event.                                                                    |\n"
+        message << "+--------------------------------------------------------------------------------------------------+\n";
+        G4Exception("G4IntegrationDriver::AccurateAdvance()", "GeomField1001", EventMustBeAborted, message);
         return false;
 
         
